@@ -40,6 +40,112 @@
           font-weight: 200;
           font-style: normal;
         }
+
+         /* Header - Menu Hamburguer */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                position: relative;
+            }
+
+            .menu-toggle {
+                display: block;
+                order: 1;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--darkest);
+                box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+                padding: 20px;
+                z-index: 99;
+                display: none;
+                border-top: 1px solid var(--medium-gray);
+                border-bottom: 1px solid var(--medium-gray);
+            }
+
+            nav.active {
+                display: block;
+                animation: slideDown 0.3s ease;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                display: block;
+                padding: 10px 0;
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            .logo {
+                order: 2;
+                flex: 1;
+                text-align: center;
+            }
+
+            .cart-btn {
+                order: 3;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animação do menu */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         
         body {
             background-color: var(--darker);
@@ -1146,12 +1252,16 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <div class="logo">
                 <i class="fas fa-utensils"></i>
                 <span>Noz Mermo</span>
             </div>
             
-            <nav>
+            <nav id="mainNav">
                 <ul>
                     <li><a href="#home">Início</a></li>
                     <li><a href="#menu">Cardápio</a></li>
@@ -1745,6 +1855,25 @@
                 prepTime: "25 min"
             }
         };
+
+        // Menu Hamburguer
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuToggle.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
 
         // Carrinho de compras
         let cart = [];
