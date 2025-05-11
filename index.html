@@ -69,13 +69,27 @@
         /* Mobile Styles */
         @media (max-width: 768px) {
             .header-container {
-                position: relative;
-            }
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-            .menu-toggle {
-                display: block;
-                order: 1;
-            }
+        .menu-toggle {
+            display: block;
+            order: 0; /* Remove a ordem forçada */
+        }
+
+        .logo {
+            order: 0; /* Remove a ordem forçada */
+            flex: 0; /* Remove o flex: 1 que centralizava */
+            text-align: left; /* Alinha à esquerda */
+            margin: 0 auto; /* Centraliza apenas o logo */
+        }
+
+        .cart-btn {
+            order: 0; /* Remove a ordem forçada */
+        }
 
             nav {
                 position: absolute;
