@@ -1,86 +1,232 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pedidos de Marmita</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      background: #fffbe6;
-    }
-    h1 {
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-    }
-    button {
-      background-color: #28a745;
-      color: white;
-      padding: 10px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #218838;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noz Mermo - Marmitas Deliciosas</title>
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #FFF9F0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #FF6B35, #FFA630);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .slogan {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Seção de apresentação */
+        .apresentacao {
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .apresentacao h2 {
+            color: #FF6B35;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .apresentacao p {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-size: 1.1rem;
+        }
+        
+        .destaque {
+            background-color: #FFE8D6;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 5px solid #FF6B35;
+        }
+        
+        .destaque h3 {
+            color: #FF6B35;
+            margin-bottom: 15px;
+        }
+        
+        /* Formulário */
+        .formulario {
+            background: linear-gradient(135deg, #FFA630, #FFC300);
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .formulario h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .btn-enviar {
+            background-color: #FF6B35;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-enviar:hover {
+            background-color: #E05A2C;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        
+        /* Responsividade */
+        @media (min-width: 768px) {
+            .form-container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            
+            .logo {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Marmita da Cria</h1>
-  <form id="pedidoForm">
-    <label for="nome">Seu nome</label>
-    <input type="text" id="nome" required />
-
-    <label for="prato">Escolha sua marmita</label>
-    <select id="prato">
-      <option value="Frango com arroz e salada">Frango com arroz e salada</option>
-      <option value="Feijoada">Feijoada</option>
-      <option value="Peixe grelhado com legumes">Peixe grelhado com legumes</option>
-    </select>
-
-    <label for="quantidade">Quantidade</label>
-    <input type="number" id="quantidade" min="1" value="1" required />
-
-    <label for="dataEntrega">Data da entrega</label>
-    <input type="date" id="dataEntrega" required />
-
-    <label for="obs">Observações (opcional)</label>
-    <textarea id="obs" rows="3"></textarea>
-
-    <button type="button" onclick="enviarPedido()">Fazer Pedido no WhatsApp</button>
-  </form>
-
-  <script>
-    function enviarPedido() {
-      const nome = document.getElementById("nome").value;
-      const prato = document.getElementById("prato").value;
-      const qtd = document.getElementById("quantidade").value;
-      const data = document.getElementById("dataEntrega").value;
-      const obs = document.getElementById("obs").value;
-
-      const msg = `Olá! Quero fazer um pedido de marmita:%0A
-- Nome: ${nome}%0A
-- Prato: ${prato}%0A
-- Quantidade: ${qtd}%0A
-- Data da entrega: ${data}%0A
-- Observações: ${obs || "Nenhuma"}%0A`;
-
-      const numero = "5511999999999"; // Substitui pelo número do WhatsApp do negócio (com DDI do Brasil)
-      const url = `https://wa.me/${numero}?text=${msg}`;
-
-      window.open(url, "_blank");
-    }
-  </script>
+    <header>
+        <div class="container">
+            <div class="logo">Noz Mermo</div>
+            <div class="slogan">Marmitas feitas com carinho e sabor!</div>
+        </div>
+    </header>
+    
+    <section class="apresentacao">
+        <div class="container">
+            <h2>Conheça nossas deliciosas marmitas</h2>
+            <p>No Noz Mermo, preparamos marmitas caseiras com ingredientes frescos e selecionados, pensando no seu bem-estar e no seu paladar.</p>
+            <p>Nossos pratos são balanceados e preparados com todo cuidado para manter o sabor e a qualidade da comida caseira que você merece.</p>
+            
+            <div class="destaque">
+                <h3>Nosso diferencial</h3>
+                <p>Além da qualidade dos ingredientes, oferecemos opções variadas diariamente, incluindo dietas especiais (vegetariana, low carb, sem glúten). Tudo isso com a praticidade de entrega no seu endereço!</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="container">
+        <section class="formulario">
+            <h2>Faça seu pedido</h2>
+            
+            <form id="pedidoForm" class="form-container">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="endereco">Endereço para entrega:</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pedido">Seu pedido:</label>
+                    <textarea id="pedido" name="pedido" required placeholder="Ex: 1 Marmita de Frango, 1 Vegetariana..."></textarea>
+                </div>
+                
+                <button type="button" class="btn-enviar" onclick="enviarWhatsApp()">Enviar pedido via WhatsApp</button>
+            </form>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Noz Mermo - Marmitas caseiras e deliciosas</p>
+            <p>Telefone: (XX) XXXX-XXXX | Entregamos em sua casa!</p>
+        </div>
+    </footer>
+    
+    <script>
+        function enviarWhatsApp() {
+            const nome = document.getElementById('nome').value;
+            const endereco = document.getElementById('endereco').value;
+            const pedido = document.getElementById('pedido').value;
+            
+            if (!nome || !endereco || !pedido) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            const texto = `Olá Noz Mermo! Gostaria de fazer um pedido:\n\n*Nome:* ${nome}\n*Endereço:* ${endereco}\n*Pedido:* ${pedido}`;
+            const textoCodificado = encodeURIComponent(texto);
+            const numeroWhatsApp = 'SEU_NUMERO_AQUI'; // Substitua pelo número real
+            
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${textoCodificado}`, '_blank');
+        }
+    </script>
 </body>
 </html>
