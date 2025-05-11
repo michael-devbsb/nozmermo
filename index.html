@@ -68,80 +68,56 @@
 
         /* Mobile Styles */
         @media (max-width: 768px) {
-            .header-container {
-            position: relative;
+        .header-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            padding: 10px 0;
         }
 
         .menu-toggle {
             display: block;
-            order: 0; /* Remove a ordem forçada */
+            margin-right: 15px;
         }
 
         .logo {
-            order: 0; /* Remove a ordem forçada */
-            flex: 0; /* Remove o flex: 1 que centralizava */
-            text-align: left; /* Alinha à esquerda */
-            margin: 0 auto; /* Centraliza apenas o logo */
+            flex-grow: 1;
+            text-align: center;
         }
 
         .cart-btn {
-            order: 0; /* Remove a ordem forçada */
+            margin-left: 15px;
         }
 
-            nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--darkest);
-                box-shadow: 0 10px 15px rgba(0,0,0,0.3);
-                padding: 20px;
-                z-index: 99;
-                display: none;
-                border-top: 1px solid var(--medium-gray);
-                border-bottom: 1px solid var(--medium-gray);
-            }
-
-            nav.active {
-                display: block;
-                animation: slideDown 0.3s ease;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav a {
-                display: block;
-                padding: 10px 0;
-            }
-
-            nav a::after {
-                display: none;
-            }
-
-            .logo {
-                order: 2;
-                flex: 1;
-                text-align: center;
-            }
-
-            .cart-btn {
-                order: 3;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
+        nav {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--darkest);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+            padding: 20px;
+            z-index: 99;
+            display: none;
+            border-top: 1px solid var(--medium-gray);
+            border-bottom: 1px solid var(--medium-gray);
         }
+
+        nav.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        nav ul {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 0;
+        }
+    }
 
         @media (max-width: 576px) {
             .hero h1 {
